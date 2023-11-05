@@ -9,5 +9,6 @@ router.use(authController.protect);
 
 router.get('/',postController.getAllPosts)
 router.post('/',postController.createPost)
+router.delete('/',postController.deletePost)
 
 module.exports = router;
