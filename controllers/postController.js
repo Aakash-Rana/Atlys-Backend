@@ -1,5 +1,7 @@
 const Post = require('./../models/postModel')
 const catchAsync = require('./../utils/catchAsync');
+const AppError = require('./../utils/appError');
+
 
 
 exports.getAllPosts = catchAsync(async (req, res, next) => {
@@ -35,4 +37,18 @@ exports.createPost = catchAsync(async (req, res, next) => {
     });
 });
 
+exports.deletePost = catchAsync(async (req,res,next)=>{
+    const post= await Post.findById(req.body.id);
+    if(!post) return next(new AppError('Invalid Post Id', 404));
+   
+    if(post.user && post.user.toString()!=req.user.id)
+    return next(new AppError('You can only delete your posts', 401));
+
+    await Post.findByIdAndDelete(req.body.id);
+
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
+});
 
