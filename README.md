@@ -11,6 +11,7 @@ This is an assignment task provided by Atlys. For Backend I have used Nodejs , E
 - Auth (Sign in/Sign up)
 - Create Post ( Anonymously  or as User)
 - Get all Posts
+- Delete Post
 - Forgot Password
 - Reset Password
 - Update Current user password
